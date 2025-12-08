@@ -1,0 +1,8 @@
+{
+  "name": "SuiCare",
+  "description": "Decentralized Health Records & Multi-Asset Insurance on Sui. A unified ecosystem for patient data ownership and automated insurance.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
