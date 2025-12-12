@@ -4,9 +4,9 @@ import { VaultItem } from '../types';
 import { useCurrentAccount, useSignAndExecuteTransaction, useSuiClientQuery } from '@mysten/dapp-kit';
 import { Transaction } from '@mysten/sui/transactions';
 
-// ✅ YOUR PACKAGE ID (Double check this matches your 'sui client publish' output)
-const PACKAGE_ID = '0x7d37849153d64903b547a56c5d2036586074c5370a790326a03b9d076c8b1c88'; 
-const MODULE_NAME = 'vault';
+// ✅ IMPORT CONSTANTS
+import { PACKAGE_ID, MODULE_NAME } from '../pages/constants';
+
 const STRUCT_NAME = 'VaultItem';
 
 interface VaultProps {
@@ -212,7 +212,7 @@ const Vault: React.FC<VaultProps> = ({ items: mockItems, onAddItem }) => {
           filteredItems.map((item, idx) => (
             <div key={item.id || idx} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
-                 <Lock size={100} className="text-slate-200 -rotate-12 translate-x-8 -translate-y-8" />
+                  <Lock size={100} className="text-slate-200 -rotate-12 translate-x-8 -translate-y-8" />
               </div>
 
               <div className="relative z-10">
@@ -226,25 +226,25 @@ const Vault: React.FC<VaultProps> = ({ items: mockItems, onAddItem }) => {
                     <FileText size={24} />
                   </div>
                   <div className="flex gap-2">
-                     <button 
+                      <button 
                         onClick={() => setSelectedItem(item)}
                         className="p-2 text-slate-400 hover:text-primary transition-colors" 
                         title="View Details"
-                     >
-                       <Eye size={18} />
-                     </button>
-                     {/* Show Explorer Link for Real Items */}
-                     {item.id && item.id.startsWith('0x') && (
-                       <a 
-                         href={`https://suiscan.xyz/testnet/object/${item.id}`} 
-                         target="_blank" 
-                         rel="noreferrer"
-                         className="p-2 text-slate-400 hover:text-primary transition-colors"
-                         title="View on Chain"
-                       >
-                         <ExternalLink size={18} />
-                       </a>
-                     )}
+                      >
+                        <Eye size={18} />
+                      </button>
+                      {/* Show Explorer Link for Real Items */}
+                      {item.id && item.id.startsWith('0x') && (
+                        <a 
+                          href={`https://suiscan.xyz/testnet/object/${item.id}`} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="p-2 text-slate-400 hover:text-primary transition-colors"
+                          title="View on Chain"
+                        >
+                          <ExternalLink size={18} />
+                        </a>
+                      )}
                   </div>
                 </div>
 

@@ -10,11 +10,13 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import DrugVerify from './pages/DrugVerify';
 import Vault from './pages/Vault';
+import Doctors from './pages/Doctors'; 
+import DataDao from './pages/DataDao'; 
+import Guardians from './pages/Guardians'; // ✅ ADDED IMPORT
 import { AppView, HealthRecord, AccessRequest, InsurancePolicy, PolicyPlan, Claim, VaultItem } from './types';
 import { useCurrentAccount, useDisconnectWallet } from '@mysten/dapp-kit';
 
-// ... (KEEP ALL MOCK DATA CONSTANTS: INITIAL_RECORDS, ETC. HERE) ...
-// (I am omitting the mock data block to save space, but DO NOT DELETE IT from your file)
+// --- MOCK DATA CONSTANTS ---
 const INITIAL_RECORDS: HealthRecord[] = [
   { id: 'REC-88392', type: 'Diagnosis', date: '2024-05-15', doctor: 'Dr. Amina Bello', hospital: 'Lagos University Teaching Hospital', details: 'Acute Malaria Treatment. Prescribed Artemether-Lumefantrine.', verified: true, attachments: [] },
   { id: 'REC-88210', type: 'Vaccination', date: '2024-01-20', doctor: 'Nurse Joy', hospital: 'Reddington Hospital', details: 'Yellow Fever Booster Shot.', verified: true, attachments: [{ name: 'vaccination_card.pdf', url: '#', type: 'application/pdf' }] },
@@ -38,6 +40,7 @@ const App: React.FC = () => {
   const [userAddress, setUserAddress] = useState<string>('');
   const [userInfo, setUserInfo] = useState<{ name: string; email: string; picture: string } | null>(null);
   
+  // Local State (mostly for fallbacks)
   const [walletBalance, setWalletBalance] = useState(50);
   const [records, setRecords] = useState<HealthRecord[]>(INITIAL_RECORDS);
   const [policies, setPolicies] = useState<InsurancePolicy[]>(INITIAL_POLICIES);
@@ -50,7 +53,6 @@ const App: React.FC = () => {
     if (currentAccount) {
       console.log("🔌 Wallet Connected:", currentAccount.address);
       setUserAddress(currentAccount.address);
-      // For wallet users, we don't have name/email, so set defaults
       setUserInfo({
         name: 'Wallet User',
         email: 'wallet@suicare.app',
@@ -58,9 +60,11 @@ const App: React.FC = () => {
       });
       setIsAuthenticated(true);
       setShowLoginPage(false);
-      setCurrentView(AppView.DASHBOARD);
+      if (currentView === AppView.LANDING) {
+        setCurrentView(AppView.DASHBOARD);
+      }
     }
-  }, [currentAccount]);
+  }, [currentAccount, currentView]);
 
   // --- 2. Handle zkLogin (Google) ---
   const handleAuthSuccess = (data: { address: string; email: string; name: string; picture: string }) => {
@@ -76,16 +80,12 @@ const App: React.FC = () => {
   };
 
   const handleLogout = () => {
-    // Check if connected via wallet and disconnect
     if (currentAccount) {
       disconnectWallet();
     }
-    
     setIsAuthenticated(false);
     setShowLoginPage(false);
     setCurrentView(AppView.LANDING);
-    
-    // Reset State
     setUserAddress('');
     setUserInfo(null);
     setAccessRequests([]);
@@ -94,11 +94,7 @@ const App: React.FC = () => {
 
   const handleShowLogin = () => setShowLoginPage(true);
 
-  // ... (Keep existing demo handler functions: handleSimulateRequest, handleApproveRequest, etc.) ...
-  // ... (Paste your handleSimulateRequest, handleApproveRequest, handleDenyRequest, handleAddRecord, handleBuyPolicy, handleSubmitClaim, handleAddVaultItem here) ...
-  // To keep this response clean, I assume you kept the logic functions from the previous App.tsx. 
-  // If you need them pasted again, let me know!
-  
+  // --- Mock Handlers ---
   const handleSimulateRequest = () => {
     const newRequest: AccessRequest = { id: `REQ-${Math.floor(Math.random() * 10000)}`, doctorName: 'Dr. Chioma Adebayo', hospital: 'First Cardiology Consultants', purpose: 'Update consultation notes.', timestamp: new Date() };
     setAccessRequests(prev => [newRequest, ...prev]);
@@ -137,7 +133,7 @@ const App: React.FC = () => {
         onClose={() => setIsSidebarOpen(false)}
         onLogout={handleLogout}
       />
-
+      
       <div className="flex-1 flex flex-col h-full overflow-hidden">
         <header className="bg-white p-4 flex items-center justify-between border-b border-slate-100 md:hidden z-20">
           <div className="flex items-center gap-2">
@@ -157,6 +153,7 @@ const App: React.FC = () => {
               accessRequests={accessRequests}
               onApproveRequest={handleApproveRequest}
               onDenyRequest={handleDenyRequest}
+              onChangeView={setCurrentView}
             />
           )}
           {currentView === AppView.RECORDS && (
@@ -178,6 +175,13 @@ const App: React.FC = () => {
               onSubmitClaim={handleSubmitClaim}
             />
           )}
+          {currentView === AppView.DOCTORS && <Doctors />}
+          
+          {currentView === AppView.DATA_DAO && <DataDao />} 
+          
+          {/* ✅ GUARDIANS VIEW ADDED HERE */}
+          {currentView === AppView.GUARDIANS && <Guardians />} 
+          
           {currentView === AppView.DRUG_VERIFY && <DrugVerify />}
           {currentView === AppView.ASSISTANT && <Assistant />}
           

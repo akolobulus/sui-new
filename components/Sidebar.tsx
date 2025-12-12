@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { LayoutDashboard, FileText, ShieldCheck, MessageSquareMore, LogOut, X, Scan, UserCircle, Lock } from 'lucide-react';
+import { LayoutDashboard, FileText, ShieldCheck, MessageSquareMore, LogOut, X, Scan, UserCircle, Lock, Stethoscope } from 'lucide-react';
 import { AppView } from '../types';
 
 interface SidebarProps {
@@ -15,6 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView, isOpen, on
   const menuItems = [
     { view: AppView.DASHBOARD, label: 'MyHealthBox', icon: LayoutDashboard },
     { view: AppView.RECORDS, label: 'Medical Records', icon: FileText },
+    { view: AppView.DOCTORS, label: 'Find Doctor', icon: Stethoscope }, // ✅ NEW: Telemedicine Link
     { view: AppView.VAULT, label: 'Secure Vault', icon: Lock },
     { view: AppView.INSURANCE, label: 'Insurance Hub', icon: ShieldCheck },
     { view: AppView.DRUG_VERIFY, label: 'Drug Verify', icon: Scan },
@@ -76,6 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView, isOpen, on
         <div className="absolute bottom-8 left-0 w-full px-4">
           <div className="p-4 bg-primary/5 rounded-xl mb-4 border border-primary/10">
             <p className="text-xs text-slate-500 font-semibold mb-1">CONNECTED WALLET</p>
+            {/* You can pass the real address via props later if you want */}
             <p className="text-sm font-mono text-slate-700 truncate">0x71a...9b2c</p>
           </div>
           <button 

@@ -6,7 +6,7 @@ import { jwtToAddress } from '@mysten/sui/zklogin';
 import { ConnectButton } from '@mysten/dapp-kit';
 
 // Your Real Client ID
-const GOOGLE_CLIENT_ID = "233217306953-h2pdkknk8109tu8akqgulmj0ni8js2b8.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID ="233217306953-g91t37q723vuugpjent6hf78tgadsnv3.apps.googleusercontent.com";//"233217306953-h2pdkknk8109tu8akqgulmj0ni8js2b8.apps.googleusercontent.com";
 
 interface LoginProps {
   onLoginSuccess: (data: { address: string; email: string; name: string; picture: string }) => void;
