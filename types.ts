@@ -126,3 +126,35 @@ export interface AccessRequest {
   status?: number;
   timestamp?: Date;
 }
+// --- 1. Views/Pages ---
+export enum AppView {
+  LANDING = 'LANDING',
+  LOGIN = 'LOGIN', // New Login/Role Selection Screen
+
+  // Patient Views
+  DASHBOARD = 'DASHBOARD',
+  RECORDS = 'RECORDS',
+  VAULT = 'VAULT',
+  INSURANCE = 'INSURANCE',
+  DRUG_VERIFY = 'DRUG_VERIFY',
+  ASSISTANT = 'ASSISTANT',
+  PROFILE = 'PROFILE',
+  DOCTORS = 'DOCTORS',
+  DATA_DAO = 'DATA_DAO',
+  GUARDIANS = 'GUARDIANS',
+
+  // Professional Views (New)
+  DOCTOR_DASHBOARD = 'DOCTOR_DASHBOARD',
+  LAB_DASHBOARD = 'LAB_DASHBOARD',
+  INSURER_DASHBOARD = 'INSURER_DASHBOARD'
+}
+
+// --- New: User Roles ---
+export enum UserRole {
+  PATIENT = 'PATIENT',
+  DOCTOR = 'DOCTOR',
+  PHARMACIST = 'PHARMACIST',
+  INSURER = 'INSURER'
+}
+
+// ... (Keep the rest of your existing interfaces: HealthRecord, PolicyPlan, etc.)
