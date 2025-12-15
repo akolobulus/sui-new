@@ -1,90 +1,82 @@
-# 🏥 SuiCare: The Decentralized Health Super-App
+# 🏥 SuiCare: The Decentralized Health Ecosystem
 
-![SuiCare Banner](https://via.placeholder.com/1200x300.png?text=SuiCare+Health+Ecosystem)
+![SuiCare Banner](Screenshot%202025-12-15%20115815.png)
 
-> **Gamifying Wellness, Securing Records, and Monetizing Health Data on the Sui Blockchain.**
+> **Gamifying Wellness, Securing Medical Records, and Automating Insurance on the Sui Blockchain.**
+
+[![Sui Network](https://img.shields.io/badge/Built%20On-Sui%20Network-4484f1)](https://sui.io/)
+[![License](https://img.shields.io/badge/License-MIT-green)](./LICENSE)
+[![Status](https://img.shields.io/badge/Status-Live%20Beta-orange)]()
 
 ## 📖 Overview
 
-**SuiCare** is a holistic Web3 healthcare ecosystem built on the **Sui Network**. It solves critical issues in the healthcare industry—fragmented medical records, counterfeit drugs, and lack of patient data ownership—by leveraging the speed, low cost, and object-oriented nature of Sui Move.
+**SuiCare** is not just a patient app; it is a **complete healthcare infrastructure protocol**. We leverage the speed, low gas costs, and object-centric model of **Sui Move** to bridge the gap between physical health and digital assets.
 
-SuiCare empowers patients to own their history, verify their medication, earn from their data, and access care instantly.
+In emerging markets, healthcare faces three critical failures:
 
----
+1.  **Data Fragmentation:** Patients do not own their history; it is trapped in paper folders.
+2.  **Counterfeit Drugs:** **1 in 10** medical products in developing nations is substandard or falsified.
+3.  **Insurance Distrust:** Claim processes are slow, opaque, and prone to fraud.
 
-## 🚀 Key Features
-
-### 1. 🩺 Telemedicine Marketplace
-
-- **Direct Booking:** Patients find verified doctors and book consultations.
-- **Escrow Payments:** Consultation fees are held in a smart contract escrow and only released when the session is complete.
-- **Instant Refunds:** Patients can cancel before the appointment starts and receive an immediate refund.
-
-### 2. 🦁 Health Avatar (Gamification)
-
-- **Dynamic NFT:** A "Lion" avatar that acts as a visual representation of your health journey.
-- **Evolution Mechanics:** The avatar evolves from a **Cub** to a **King** (Level 1 → 4) as users perform healthy actions (uploading records, verifying drugs).
-- **On-Chain Metadata:** Level and XP are stored directly on the Avatar object.
-
-### 3. 💰 Data DAO (Research Marketplace)
-
-- **Monetize Data:** Patients stake anonymized medical records into a **Research Pool**.
-- **Earn Rewards:** Researchers fund the pool with SUI to access aggregate data; users claim SUI rewards proportional to their staked records.
-- **Privacy First:** Users retain ownership; only the access right is staked.
-
-### 4. 🛡️ Emergency Guardians ("Break Glass")
-
-- **Delegated Access:** Users designate trusted family members as "Guardians".
-- **Guardian Pass:** A specialized NFT is minted to the Guardian's wallet, granting them read-access to critical bio-data (Blood Type, Allergies) if the patient is incapacitated.
-
-### 5. 💊 PharmaGuard (Drug Verification)
-
-- **Anti-Counterfeit:** Users verify medicine authenticity by entering a batch number.
-- **Supply Chain Tracking:** The smart contract checks the `DrugRegistry` to ensure the batch was minted by a verified manufacturer.
-
-### 6. ⚡ Automated Parametric Insurance
-
-- **Smart Policies:** Users buy policies (Device, Health, Travel).
-- **Instant Claims:** Logic to handle claims and payouts transparently on-chain.
+**SuiCare solves this via a Multi-Role Ecosystem connecting Patients, Doctors, Labs, and Insurers.**
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Key Features by Role
 
-- **Blockchain:** Sui Network (Testnet)
-- **Smart Contract Language:** Move
-- **Frontend Framework:** React (Vite) + TypeScript
-- **Styling:** Tailwind CSS + Lucide Icons
-- **Wallet Integration:** `@mysten/dapp-kit` (Sui Wallet, zkLogin)
-- **Charting:** Recharts
+SuiCare provides tailored portals for every stakeholder in the healthcare journey.
+
+### 👤 1. Patient Portal
+
+- **Health Avatar NFT:** A dynamic "Lion" NFT that evolves (Cub → King) based on health actions (steps, checkups).
+- **Medical Records Vault:** Own your data. Store encrypted history on IPFS, linked to on-chain metadata.
+- **Telemedicine:** Book appointments with SUI. Funds are held in **Escrow** until the consult is done.
+- **Data DAO:** Stake anonymized records to Research Pools and earn SUI rewards.
+- **Emergency Guardians:** "Break-Glass" access for family members via multi-sig logic.
+
+### 🩺 2. Doctor Portal
+
+- **Verified Issuer:** Mint immutable **"Verified Diagnosis"** and **"Prescription NFTs"** directly to a patient's wallet.
+- **Access Request:** Request temporary permission to view a patient's encrypted history.
+- **Earnings Wallet:** Real-time visualization of SUI earnings from consultations.
+
+### 🔬 3. Lab & Pharmacy Portal
+
+- **PharmaGuard:** A supply chain verification tool. Scan drug batch codes to verify authenticity against the on-chain Registry.
+- **Prescription Fulfillment:** "Burn" or mark Prescription NFTs as used to prevent double-spending of medication.
+- **Inventory Management:** Track verified stock levels on-chain.
+
+### 🏢 4. Insurer Portal
+
+- **AI Fraud Detection:** Claims are scored (0-100%) based on the presence of "Verified Records" from trusted Doctors/Labs.
+- **Automated Payouts:** Smart contract logic executes instant SUI transfers for approved claims.
+- **Parametric Rules:** Deploy oracle-based rules (e.g., "If Lab Result = Positive Malaria, Pay 50 SUI").
 
 ---
 
 ## 🏗️ Technical Architecture
 
-### Smart Contract Structure (`vault.move`)
+SuiCare is a full-stack dApp built with **React (Vite)** and **Sui Move**.
 
-The core logic is contained within the `suicare::vault` module.
+### Smart Contracts (`suicare-backend`)
 
-#### Key Structs (Sui Objects)
+We utilize Sui's **Object-Centric Data Model** to handle ownership and access control.
 
-| Struct             | Type          | Description                                                |
-| :----------------- | :------------ | :--------------------------------------------------------- |
-| `HealthRecord`     | Owned Object  | Stores medical details, doctor info, and IPFS CID.         |
-| `HealthAvatar`     | Owned Object  | The dynamic NFT (Level, XP, Image URL).                    |
-| `InsurancePolicy`  | Owned Object  | Represents an active insurance plan with coverage details. |
-| `Appointment`      | Shared Object | Manages the booking state and holds SUI in Escrow.         |
-| `EmergencyProfile` | Shared Object | Publicly accessible bio-data (Blood type, Allergies).      |
-| `GuardianPass`     | Owned Object  | An NFT key held by a guardian to access profiles.          |
-| `ResearchPool`     | Shared Object | Holds SUI funds donated by researchers.                    |
-| `DataStake`        | Owned Object  | A receipt representing a staked record.                    |
+| Object Type      | Ownership Model | Description                                                             |
+| :--------------- | :-------------- | :---------------------------------------------------------------------- |
+| `HealthRecord`   | **Owned**       | Transferable object containing encrypted IPFS CID and issuer signature. |
+| `HealthAvatar`   | **Owned**       | Dynamic NFT with mutable fields (`level`, `xp`) updated by logic.       |
+| `InsuranceVault` | **Shared**      | A treasury pool that accepts premiums and pays out claims.              |
+| `Appointment`    | **Shared**      | Escrow object holding funds between Patient and Doctor.                 |
+| `DrugRegistry`   | **Shared**      | A global table mapping `BatchID` -> `Manufacturer` for verification.    |
+| `AdminCap`       | **Owned**       | Capability required to verify Labs and approve high-value claims.       |
 
-### Data Flow Example: Telemedicine
+### Frontend (`client`)
 
-1.  **Book:** Patient calls `book_appointment`. SUI is split from gas and moved into the `Appointment` object (Escrow).
-2.  **Wait:** Appointment status is `0` (Active).
-3.  **Complete:** Patient calls `release_funds`. SUI is transferred to the Doctor.
-4.  **Cancel:** Patient calls `cancel_appointment`. SUI is transferred back to Patient.
+- **Framework:** React + TypeScript + Vite
+- **State Management:** Local React Hooks + `@mysten/dapp-kit` Query Hooks.
+- **Styling:** Tailwind CSS for a responsive, mobile-first UI (down to 320px).
+- **Authentication:** **zkLogin** (Google) for non-crypto natives & standard Wallet Connect.
 
 ---
 
@@ -94,76 +86,80 @@ The core logic is contained within the `suicare::vault` module.
 
 - [Node.js](https://nodejs.org/) (v18+)
 - [Sui CLI](https://docs.sui.io/guides/developer/getting-started/sui-install)
-- Sui Wallet Extension (Browser)
+- Sui Wallet Extension
 
-### 1. Backend (Smart Contract)
+### 1. Smart Contract Deployment
 
 ```bash
-# Navigate to move folder
 cd suicare-backend
-
-# Build the contract
 sui move build
-
-# Publish to Testnet
 sui client publish --gas-budget 100000000 --skip-fetch-latest-git-deps
 ```
 
-**⚠️ Important:** After publishing, copy the **Package ID** and the Shared Object IDs (Insurance Vault, Research Pool, Drug Registry) from the console output.
+````
 
-### 2\. Frontend (Client)
+_Copy the **Package ID** and **Shared Object IDs** from the output._
 
-1.  Navigate to the client folder:
+### 2\. Frontend Setup
 
-    ```bash
-    cd client
-    ```
+```bash
+cd client
+npm install
+```
 
-2.  Install dependencies:
+### 3\. Configuration
 
-    ```bash
-    npm install
-    ```
+Open `client/src/constants.ts` and update with your deployed IDs:
 
-3.  **Update Constants:**
-    Open `client/src/constants.ts` and paste your new IDs from the backend deployment:
+```typescript
+export const NETWORK = "testnet";
+export const PACKAGE_ID = "0x..."; // Your Package ID
+export const INSURANCE_VAULT_ID = "0x...";
+export const DRUG_REGISTRY_ID = "0x...";
+```
 
-    ```typescript
-    export const PACKAGE_ID = "0x...";
-    export const INSURANCE_VAULT_ID = "0x...";
-    export const RESEARCH_POOL_ID = "0x...";
-    export const DRUG_REGISTRY_ID = "0x...";
-    ```
+### 4\. Run Locally
 
-4.  Run the development server:
+```bash
+npm run dev
+```
 
-    ```bash
-    npm run dev
-    ```
-
-5.  Open `http://localhost:5173` in your browser.
+Access the app at `http://localhost:5173`.
 
 ---
 
-## 🧪 Testing the App (Golden Flow)
+## 🧪 The "Golden Flow" (Demo Walkthrough)
 
-1.  **Connect Wallet:** Switch Sui Wallet to **Testnet** and connect.
-2.  **Mint Avatar:** Go to Dashboard -\> Click **"Mint Lion Cub"**.
-3.  **Create Profile:** Go to "Emergency Guardians" -\> Fill details -\> **"Save Profile"**.
-4.  **Add Record:** Go to "Medical Records" -\> **"Add Record"**.
-5.  **Stake Data:** Go to "Monetize Data" -\> Click **"Stake"** on your new record.
-6.  **Level Up:** Go back to Dashboard -\> Click **"Train"**. Watch your Lion evolve\!
+To test the full capability of SuiCare, follow this sequence:
+
+1.  **Login:** Connect Wallet via the Landing Page. Select **"Patient Portal"**.
+2.  **Gamification:** Go to Dashboard -\> Click **"Mint Lion Cub"**. See your NFT appear.
+3.  **Doctor Interaction:** Switch account or Logout. Login as **"Doctor"**.
+    - Go to **"Issue Record"**.
+    - Enter Patient Address. Mint a "Verified Diagnosis".
+4.  **Patient Verification:** Log back in as **Patient**.
+    - Go to **"Medical Records"**.
+    - See the new record marked with a **Green Verified Badge**.
+5.  **Insurance Claim:** Go to **"Insurance"**.
+    - File a claim citing the new record.
+6.  **Insurer Approval:** Logout. Login as **"Insurer"**.
+    - See the claim in the "Pending Queue".
+    - Click **"Pay"** to execute the on-chain payout.
 
 ---
 
-## 🔮 Roadmap
+## 🔮 Future Roadmap
 
-- **Phase 1 (MVP):** Testnet deployment, Core 5 features, Avatar System. (✅ Completed)
-- **Phase 2:** Mainnet launch, Mobile App Wrapper, zkLogin optimization for non-crypto users.
-- **Phase 3:** Partnership with local pharmacies for PharmaGuard integration.
-- **Phase 4:** AI Doctor Assistant integration using on-chain history.
+- **Q1 2025:** Mainnet Launch & Token Generation Event ($CARE).
+- **Q2 2025:** Mobile App (React Native) for rural access.
+- **Q3 2025:** On-chain Pharmacy Inventory Protocol (B2B).
+- **Q4 2025:** AI Doctor integration using Zero-Knowledge Proofs (zkML) on private patient data.
 
 ---
+
+## 🤝 Contributing
+
+We welcome contributions\! Please open an issue or submit a PR.
 
 ## 📄 License
 
@@ -171,4 +167,5 @@ This project is licensed under the MIT License.
 
 ---
 
-**Built with 💙 on Sui.**
+**Built with 💙 by the SuiCare Team.**
+````
