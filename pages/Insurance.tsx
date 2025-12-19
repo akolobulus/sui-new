@@ -17,17 +17,17 @@ interface InsuranceProps {
 
 // Low cost plans for testing (0.01 - 0.05 SUI)
 const MARKET_PLANS: PolicyPlan[] = [
-  {
-    id: 'PLAN-001',
-    type: 'Device',
-    name: 'Gadget Shield Premium',
-    description: 'Full coverage for accidental damage, theft, and screen cracks.',
-    coverageAmount: 1500,
-    premium: 0.05,
-    durationDays: 30,
-    icon: 'Smartphone',
-    color: 'bg-purple-50 text-purple-600'
-  },
+ // {
+   // id: 'PLAN-001',
+    //type: 'Device',
+    //name: 'Gadget Shield Premium',
+    //description: 'Full coverage for accidental damage, theft, and screen cracks.',
+    //coverageAmount: 1500,
+    //premium: 0.05,
+    //durationDays: 30,
+    //icon: 'Smartphone',
+    //color: 'bg-purple-50 text-purple-600'
+  //},
   {
     id: 'PLAN-002',
     type: 'Health',
@@ -39,28 +39,28 @@ const MARKET_PLANS: PolicyPlan[] = [
     icon: 'BriefcaseMedical',
     color: 'bg-red-50 text-red-600'
   },
-  {
-    id: 'PLAN-003',
-    type: 'Student Shield',
-    name: 'Campus Life Bundle',
-    description: 'Device protection + Accident cover for students.',
-    coverageAmount: 200,
-    premium: 0.01,
-    durationDays: 30,
-    icon: 'GraduationCap',
-    color: 'bg-orange-50 text-orange-600'
-  },
-  {
-    id: 'PLAN-004',
-    type: 'Travel',
-    name: 'Transit Safe',
-    description: 'Goods in transit protection against loss/damage.',
-    coverageAmount: 1000,
-    premium: 0.03,
-    durationDays: 7,
-    icon: 'Shield',
-    color: 'bg-blue-50 text-blue-600'
-  }
+  // {
+  //   id: 'PLAN-003',
+  //   type: 'Student Shield',
+  //   name: 'Campus Life Bundle',
+  //   description: 'Device protection + Accident cover for students.',
+  //   coverageAmount: 200,
+  //   premium: 0.01,
+  //   durationDays: 30,
+  //   icon: 'GraduationCap',
+  //   color: 'bg-orange-50 text-orange-600'
+  // },
+  // {
+  //   id: 'PLAN-004',
+  //   type: 'Travel',
+  //   name: 'Transit Safe',
+  //   description: 'Goods in transit protection against loss/damage.',
+  //   coverageAmount: 1000,
+  //   premium: 0.03,
+  //   durationDays: 7,
+  //   icon: 'Shield',
+  //   color: 'bg-blue-50 text-blue-600'
+  // }
 ];
 
 const Insurance: React.FC<InsuranceProps> = ({ policies: mockPolicies, claims: mockClaims, onBuyPolicy, onSubmitClaim }) => {
