@@ -138,26 +138,26 @@ const Insurance: React.FC<InsuranceProps> = ({ policies: mockPolicies, claims: m
     reason: ''
   });
 
-  const [devices, setDevices] = useState<Device[]>([
-    {
-      id: 'DEV-1',
-      name: 'iPhone 15 Pro Max',
-      type: 'Phone',
-      serialNumber: 'H9283749281',
-      imei: '356938035643821',
-      purchaseDate: '2023-11-01',
-      value: 1500,
-      isInsured: false,
-    }
-  ]);
+  // const [devices, setDevices] = useState<Device[]>([
+  //   {
+  //     id: 'DEV-1',
+  //     name: '',
+  //     type: 'health',
+  //     serialNumber: 'H928',
+  //     imei: '',
+  //     purchaseDate: '',
+  //     value: 0,
+  //     isInsured: false,
+  //   }
+  // ]);
 
-  const [newDevice, setNewDevice] = useState<Partial<Device>>({
-    type: 'Phone',
-    name: '',
-    serialNumber: '',
-    imei: '',
-    value: 0
-  });
+  // const [newDevice, setNewDevice] = useState<Partial<Device>>({
+  //   type: 'Phone',
+  //   name: '',
+  //   serialNumber: '',
+  //   imei: '',
+  //   value: 0
+  // });
 
   // --- ACTIONS ---
 
@@ -489,22 +489,22 @@ const Insurance: React.FC<InsuranceProps> = ({ policies: mockPolicies, claims: m
       )}
 
       {/* Device Modal */}
-      {isRegisterDeviceOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-           <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
-             <h3 className="font-bold text-lg mb-4">Register Device</h3>
-             <form onSubmit={handleRegisterDevice} className="space-y-4">
-               <input placeholder="Device Name" value={newDevice.name} onChange={e => setNewDevice({...newDevice, name: e.target.value})} className="w-full p-2 border rounded" required />
-               <input placeholder="Serial Number" value={newDevice.serialNumber} onChange={e => setNewDevice({...newDevice, serialNumber: e.target.value})} className="w-full p-2 border rounded" required />
-               <button type="submit" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold">Register</button>
-               <button type="button" onClick={() => setIsRegisterDeviceOpen(false)} className="w-full py-3 border rounded-xl font-bold text-slate-600">Cancel</button>
-             </form>
-           </div>
-        </div>
-      )}
+       {isRegisterDeviceOpen && (
+    //     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    //        <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
+    //          <h3 className="font-bold text-lg mb-4">Register D</h3>
+    //          <form onSubmit={handleRegisterDevice} className="space-y-4">
+    //            <input placeholder="Device Name" value={newDevice.name} onChange={e => setNewDevice({...newDevice, name: e.target.value})} className="w-full p-2 border rounded" required />
+    //            <input placeholder="Serial Number" value={newDevice.serialNumber} onChange={e => setNewDevice({...newDevice, serialNumber: e.target.value})} className="w-full p-2 border rounded" required />
+    //            <button type="submit" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold">Register</button>
+    //            <button type="button" onClick={() => setIsRegisterDeviceOpen(false)} className="w-full py-3 border rounded-xl font-bold text-slate-600">Cancel</button>
+    //          </form>
+    //        </div>
+    //     </div>
+    //   )}
 
-    </div>
+    // </div>
   );
-};
+}; 
 
 export default Insurance;
