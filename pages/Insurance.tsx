@@ -294,33 +294,33 @@ const Insurance: React.FC<InsuranceProps> = ({ policies: mockPolicies, claims: m
         
         {/* MY POLICIES */}
          {activeTab === 'my-policies' && (
-          // <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          //     {allPolicies.map((policy) => (
-          //       <div key={policy.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow relative">
-          //         <div className="bg-primary/5 p-6 flex justify-between items-start">
-          //           <div className="p-3 bg-white rounded-xl shadow-sm text-primary">
-          //             {policy.type === 'Device' && <Smartphone size={24} />}
-          //             {policy.type === 'Health' && <BriefcaseMedical size={24} />}
-          //             {policy.type === 'Travel' && <Shield size={24} />}
-          //             {(!['Device', 'Health', 'Travel'].includes(policy.type)) && <Shield size={24} />}
-          //           </div>
-          //           <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
-          //             {policy.status}
-          //           </span>
-          //         </div>
-          //         <div className="p-6">
-          //           <h3 className="font-bold text-slate-800 text-lg mb-1">{policy.name}</h3>
-          //           <p className="text-xs text-slate-400 mb-4 font-mono truncate">{policy.id}</p>
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+               {allPolicies.map((policy) => (
+                 <div key={policy.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow relative">
+                   <div className="bg-primary/5 p-6 flex justify-between items-start">
+                     <div className="p-3 bg-white rounded-xl shadow-sm text-primary">
+                       {policy.type === 'Device' && <Smartphone size={24} />}
+                       {policy.type === 'Health' && <BriefcaseMedical size={24} />}
+                       {policy.type === 'Travel' && <Shield size={24} />}
+                       {(!['Device', 'Health', 'Travel'].includes(policy.type)) && <Shield size={24} />}
+                     </div>
+                     <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                       {policy.status}
+                     </span>
+                  </div>
+                   <div className="p-6">
+                     <h3 className="font-bold text-slate-800 text-lg mb-1">{policy.name}</h3>
+                     <p className="text-xs text-slate-400 mb-4 font-mono truncate">{policy.id}</p>
                     
-          //           <div className="space-y-2 mb-6">
-          //             <div className="flex justify-between text-sm">
-          //               <span className="text-slate-500">Coverage</span>
-          //               <span className="font-medium text-slate-800">SUI {policy.coverageAmount.toLocaleString()}</span>
-          //             </div>
-          //             <div className="flex justify-between text-sm">
-          //               <span className="text-slate-500">Expires</span>
-          //               <span className="font-medium text-slate-800">{policy.expiryDate}</span>
-          //             </div>
+                     <div className="space-y-2 mb-6">
+                       <div className="flex justify-between text-sm">
+                         <span className="text-slate-500">Coverage</span>
+                         <span className="font-medium text-slate-800">SUI {policy.coverageAmount.toLocaleString()}</span>
+                       </div>
+                       <div className="flex justify-between text-sm">
+                        <span className="text-slate-500">Expires</span>
+                        <span className="font-medium text-slate-800">{policy.expiryDate}</span>
+                       </div>
                     </div> 
 
                     {policy.id.startsWith('0x') && (
@@ -344,68 +344,68 @@ const Insurance: React.FC<InsuranceProps> = ({ policies: mockPolicies, claims: m
           </div>
         )}
 
-        {/* DEVICES */}
+        {/* /* {/* DEVICES */}
         {activeTab === 'devices' && (
-          <div className="space-y-6">
-              <div className="flex justify-between items-center">
-                <h3 className="font-bold text-slate-800">My Gadgets & Assets</h3>
-                <button onClick={() => setIsRegisterDeviceOpen(true)} className="bg-primary text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-bold shadow-md hover:bg-blue-600"><Plus size={18} /> Register Device</button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {devices.map((device) => (
-                  <div key={device.id} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col">
-                     <div className="flex justify-between items-start mb-4">
-                       <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500"><Smartphone size={24} /></div>
-                       {device.isInsured ? (
-                         <span className="bg-green-50 text-green-600 text-[10px] uppercase font-bold px-2 py-1 rounded-full border border-green-100">Insured</span>
-                       ) : (
-                         <span className="bg-orange-50 text-orange-600 text-[10px] uppercase font-bold px-2 py-1 rounded-full border border-orange-100">Uninsured</span>
-                       )}
-                     </div>
-                     <h4 className="font-bold text-slate-800 text-lg">{device.name}</h4>
-                     <p className="text-sm text-slate-500 mb-4">{device.serialNumber}</p>
+          // <div className="space-y-6">
+          //     <div className="flex justify-between items-center">
+          //       <h3 className="font-bold text-slate-800">My Gadgets & Assets</h3>
+          //       <button onClick={() => setIsRegisterDeviceOpen(true)} className="bg-primary text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-bold shadow-md hover:bg-blue-600"><Plus size={18} /> Register Device</button>
+          //     </div>
+          //     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          //       {devices.map((device) => (
+          //         <div key={device.id} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col">
+          //            <div className="flex justify-between items-start mb-4">
+          //              <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500"><Smartphone size={24} /></div>
+          //              {device.isInsured ? (
+          //                <span className="bg-green-50 text-green-600 text-[10px] uppercase font-bold px-2 py-1 rounded-full border border-green-100">Insured</span>
+          //              ) : (
+          //                <span className="bg-orange-50 text-orange-600 text-[10px] uppercase font-bold px-2 py-1 rounded-full border border-orange-100">Uninsured</span>
+          //              )}
+          //            </div>
+          //            <h4 className="font-bold text-slate-800 text-lg">{device.name}</h4>
+          //            <p className="text-sm text-slate-500 mb-4">{device.serialNumber}</p>
                      
-                     <div className="mt-auto space-y-3">
-                       <div className="flex justify-between text-sm py-2 border-t border-slate-50">
-                         <span className="text-slate-500">Value</span>
-                         <span className="font-medium text-slate-800">SUI {device.value.toLocaleString()}</span>
-                       </div>
-                       {!device.isInsured && (
-                         <button onClick={() => setActiveTab('market')} className="w-full py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors">
-                           Buy Insurance
-                         </button>
-                       )}
-                     </div>
-                  </div>
-                ))}
-              </div>
-          </div>
+          //            <div className="mt-auto space-y-3">
+          //              <div className="flex justify-between text-sm py-2 border-t border-slate-50">
+          //                <span className="text-slate-500">Value</span>
+          //                <span className="font-medium text-slate-800">SUI {device.value.toLocaleString()}</span>
+          //              </div>
+          //              {!device.isInsured && (
+          //                <button onClick={() => setActiveTab('market')} className="w-full py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors">
+          //                  Buy Insurance
+          //                </button>
+          //              )}
+          //            </div>
+          //         </div>
+          //       ))}
+          //     </div>
+          // </div> 
         )}
 
         {/* MARKETPLACE */}
         {activeTab === 'market' && (
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                {MARKET_PLANS.map((plan) => (
-                  <div key={plan.id} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col hover:shadow-lg transition-shadow">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${plan.color}`}>
-                        {plan.type === 'Device' && <Smartphone size={28} />}
-                        {plan.type === 'Health' && <BriefcaseMedical size={28} />}
-                        {plan.type === 'Student Shield' && <GraduationCap size={28} />}
-                        {plan.type === 'Travel' && <Shield size={28} />}
-                      </div>
-                      <div className="text-right">
-                          <p className="text-2xl font-bold text-slate-800">SUI {plan.premium}</p>
-                          <p className="text-xs text-slate-500 font-medium">/ 30 days</p>
-                      </div>
-                    </div>
-                    <h4 className="font-bold text-xl text-slate-800 mb-2">{plan.name}</h4>
-                    <p className="text-slate-600 text-sm mb-6 flex-1">{plan.description}</p>
-                    <button onClick={() => setSelectedPlan(plan)} className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 shadow-lg">Buy Now</button>
-                  </div>
-                ))}
-             </div>
-        )}
+        //      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        //         {MARKET_PLANS.map((plan) => (
+        //           <div key={plan.id} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col hover:shadow-lg transition-shadow">
+        //             <div className="flex justify-between items-start mb-4">
+        //               <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${plan.color}`}>
+        //                 {plan.type === 'Device' && <Smartphone size={28} />}
+        //                 {plan.type === 'Health' && <BriefcaseMedical size={28} />}
+        //                 {plan.type === 'Student Shield' && <GraduationCap size={28} />}
+        //                 {plan.type === 'Travel' && <Shield size={28} />}
+        //               </div>
+        //               <div className="text-right">
+        //                   <p className="text-2xl font-bold text-slate-800">SUI {plan.premium}</p>
+        //                   <p className="text-xs text-slate-500 font-medium">/ 30 days</p>
+        //               </div>
+        //             </div>
+        //             <h4 className="font-bold text-xl text-slate-800 mb-2">{plan.name}</h4>
+        //             <p className="text-slate-600 text-sm mb-6 flex-1">{plan.description}</p>
+        //             <button onClick={() => setSelectedPlan(plan)} className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 shadow-lg">Buy Now</button>
+        //           </div>
+        //         ))}
+        //      </div>
+        // )}
 
         {/* CLAIMS CENTER */}
         {activeTab === 'claims' && (
