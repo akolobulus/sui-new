@@ -293,35 +293,35 @@ const Insurance: React.FC<InsuranceProps> = ({ policies: mockPolicies, claims: m
       <div className="min-h-[400px]">
         
         {/* MY POLICIES */}
-        {activeTab === 'my-policies' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allPolicies.map((policy) => (
-                <div key={policy.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow relative">
-                  <div className="bg-primary/5 p-6 flex justify-between items-start">
-                    <div className="p-3 bg-white rounded-xl shadow-sm text-primary">
-                      {policy.type === 'Device' && <Smartphone size={24} />}
-                      {policy.type === 'Health' && <BriefcaseMedical size={24} />}
-                      {policy.type === 'Travel' && <Shield size={24} />}
-                      {(!['Device', 'Health', 'Travel'].includes(policy.type)) && <Shield size={24} />}
-                    </div>
-                    <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
-                      {policy.status}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-bold text-slate-800 text-lg mb-1">{policy.name}</h3>
-                    <p className="text-xs text-slate-400 mb-4 font-mono truncate">{policy.id}</p>
+         {activeTab === 'my-policies' && (
+          // <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          //     {allPolicies.map((policy) => (
+          //       <div key={policy.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow relative">
+          //         <div className="bg-primary/5 p-6 flex justify-between items-start">
+          //           <div className="p-3 bg-white rounded-xl shadow-sm text-primary">
+          //             {policy.type === 'Device' && <Smartphone size={24} />}
+          //             {policy.type === 'Health' && <BriefcaseMedical size={24} />}
+          //             {policy.type === 'Travel' && <Shield size={24} />}
+          //             {(!['Device', 'Health', 'Travel'].includes(policy.type)) && <Shield size={24} />}
+          //           </div>
+          //           <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+          //             {policy.status}
+          //           </span>
+          //         </div>
+          //         <div className="p-6">
+          //           <h3 className="font-bold text-slate-800 text-lg mb-1">{policy.name}</h3>
+          //           <p className="text-xs text-slate-400 mb-4 font-mono truncate">{policy.id}</p>
                     
-                    <div className="space-y-2 mb-6">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-slate-500">Coverage</span>
-                        <span className="font-medium text-slate-800">SUI {policy.coverageAmount.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-slate-500">Expires</span>
-                        <span className="font-medium text-slate-800">{policy.expiryDate}</span>
-                      </div>
-                    </div>
+          //           <div className="space-y-2 mb-6">
+          //             <div className="flex justify-between text-sm">
+          //               <span className="text-slate-500">Coverage</span>
+          //               <span className="font-medium text-slate-800">SUI {policy.coverageAmount.toLocaleString()}</span>
+          //             </div>
+          //             <div className="flex justify-between text-sm">
+          //               <span className="text-slate-500">Expires</span>
+          //               <span className="font-medium text-slate-800">{policy.expiryDate}</span>
+          //             </div>
+                    </div> 
 
                     {policy.id.startsWith('0x') && (
                         <a 
